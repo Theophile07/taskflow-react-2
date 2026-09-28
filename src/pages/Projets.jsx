@@ -1,7 +1,7 @@
 function Projets(){
     return(
         <>
-        <h1 className="font-bold text-4xl">La page des projets</h1>
+        <h1 className="text-2xl font-semibold tracking-tight text-slate-900">La page des projets</h1>
         </>
     )
 }

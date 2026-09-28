@@ -24,13 +24,13 @@ function BarreLaterale(){
 
     return(
         <>
-            <div className="w-64 h-screen bg-blue-950 ">
-                <div className="p-6 mb-8">
-                    <h2 className="text-3xl font-bold text-amber-50">Task<span className="text-emerald-300">Flow</span></h2>
-                    <p className="text-teal-50">Gestion de projets</p>
+            <div className="w-72 h-screen shrink-0 flex flex-col bg-slate-900 text-slate-300">
+                <div className="px-6 pt-7 pb-6 border-b border-white/5">
+                    <h2 className="text-xl font-semibold tracking-tight text-white">Task<span className="text-indigo-400">Flow</span></h2>
+                    <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.15em] text-slate-500">Gestion de projets</p>
                 </div>
 
-                <nav className="space-y-2 px-4">
+                <nav className="flex-1 space-y-1 p-4">
                 {navItem.map((item) => {
                     const Icone = item.icon; 
                     
@@ -39,15 +39,19 @@ function BarreLaterale(){
                             key={item.id}
                             to={item.path}
                             className={({ isActive }) => 
-                                `flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+                                `group flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-medium transition-all duration-200 ${
                                     isActive 
-                                        ? "bg-blue-600 text-white font-bold" 
-                                        : "text-slate-50 hover:bg-blue-600/50"
+                                        ? "bg-indigo-500/15 text-white ring-1 ring-inset ring-indigo-500/30" 
+                                        : "text-slate-400 hover:bg-white/5 hover:text-white"
                                 }`
                             }
                         >
-                            <Icone size={20} />
-                            <span>{item.label}</span>
+                            {({ isActive }) => (
+                                <>
+                                    <Icone size={18} className={`shrink-0 transition-colors ${isActive ? "text-indigo-400" : "text-slate-500 group-hover:text-slate-300"}`} />
+                                    <span>{item.label}</span>
+                                </>
+                            )}
                         </NavLink>
                     );
                 })}

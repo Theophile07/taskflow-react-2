@@ -12,10 +12,10 @@ function App() {
 
   return (
     <>
-      <div className='flex min-h-screen bg-amber-50 overflow-hidden'>
+      <div className='flex h-screen overflow-hidden bg-slate-50 text-slate-900 antialiased selection:bg-indigo-200'>
           <BarreLaterale/>
 
-            <main className='flex-1 p-6'>
+            <main className='flex-1 min-w-0 overflow-hidden p-6 lg:p-8'>
               <Outlet/>
             </main>
           </div>
