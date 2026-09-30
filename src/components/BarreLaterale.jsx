@@ -1,4 +1,4 @@
-import { LayoutDashboard, FolderKanban, CheckSquare,  } from "lucide-react"
+import { LayoutDashboard, FolderKanban, CheckSquare, User, LogOut,  } from "lucide-react"
 import { NavLink } from "react-router-dom"
 
 function BarreLaterale(){
@@ -56,6 +56,20 @@ function BarreLaterale(){
                     );
                 })}
             </nav>
+            <div className="border-t border-white/5 p-4">
+                <div className="flex items-center gap-3 rounded-xl bg-white/5 p-3 ring-1 ring-inset ring-white/10">
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 text-white ring-2 ring-white/10">
+                        <User size={16}/>
+                    </div>
+                    <div className="min-w-0 flex-1">
+                        <p className="truncate text-sm font-medium text-white">Shammah Ndjibu</p>
+                        <button className="mt-0.5 inline-flex items-center gap-1.5 text-xs font-medium text-slate-400 transition-colors hover:text-rose-400">
+                            <LogOut size={13}/>
+                            Deconnexion
+                        </button>
+                    </div>
+                </div>
+            </div>
             </div>
         </>
     )

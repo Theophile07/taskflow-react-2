@@ -1,4 +1,4 @@
-import { FolderKanban, CheckSquare, CircleCheck, Clock, AlertCircle, Plus } from "lucide-react"
+import { FolderKanban, CheckSquare, CircleCheck, Clock, Plus } from "lucide-react"
 import { Link } from "react-router-dom"
 
 import CarteStat from "../components/CarteStat"
@@ -65,10 +65,10 @@ function Dashboard (){
             </div>
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-                <CarteStat icon={FolderKanban} label={"Projets"} valeur={20}/>
-                <CarteStat icon={FolderKanban} label={"Total tâches"} valeur={20}/>
-                <CarteStat icon={FolderKanban} label={"Projets"} valeur={20}/>
-                <CarteStat icon={FolderKanban} label={"Projets"} valeur={20}/>
+                <CarteStat icon={FolderKanban} label={"Projets"} valeur={20} ton="indigo"/>
+                <CarteStat icon={CheckSquare} label={"Total tâches"} valeur={20} ton="violet"/>
+                <CarteStat icon={Clock} label={"En cours"} valeur={20} ton="amber"/>
+                <CarteStat icon={CircleCheck} label={"Terminées"} valeur={20} ton="emerald"/>
             </div>
 
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
@@ -86,30 +86,30 @@ function Dashboard (){
                     </Link>
                 </div>
                 <div className="overflow-x-auto">
-                <table className="w-full min-w-[640px] border-collapse">
-                    <thead>
-                        <tr className="border-b border-slate-100 text-left text-xs font-medium uppercase tracking-wider text-slate-400">
-                            <th className="pb-3 pr-6">Tâches</th>
-                            <th className="pb-3 pr-6">Projet</th>
-                            <th className="pb-3 pr-6">Priorité</th>
-                            <th className="pb-3 pr-6">Echéance</th>
-                            <th className="pb-3">Statut</th>
-                        </tr>
-                    </thead>
+                    <table className="w-full min-w-[640px] border-collapse">
+                        <thead>
+                            <tr className="border-b border-slate-100 text-left text-xs font-medium uppercase tracking-wider text-slate-400">
+                                <th className="pb-3 pr-6">Tâches</th>
+                                <th className="pb-3 pr-6">Projet</th>
+                                <th className="pb-3 pr-6">Priorité</th>
+                                <th className="pb-3 pr-6">Echéance</th>
+                                <th className="pb-3">Statut</th>
+                            </tr>
+                        </thead>
 
-                    <tbody className="divide-y divide-slate-50">
-                        {tachesRecentes.map((tache) => (
-                            <TacheRecente
-                            key={tache.id}
-                            titre={tache.titre}
-                            projet={tache.projet}
-                            priorite={tache.priorite}
-                            echeance={tache.echeance}
-                            statut={tache.statut}
-                            />
-                        ))}
-                    </tbody>
-                </table>
+                        <tbody className="divide-y divide-slate-50">
+                            {tachesRecentes.map((tache) => (
+                                <TacheRecente
+                                key={tache.id}
+                                titre={tache.titre}
+                                projet={tache.projet}
+                                priorite={tache.priorite}
+                                echeance={tache.echeance}
+                                statut={tache.statut}
+                                />
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
