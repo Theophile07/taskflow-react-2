@@ -1,10 +1,13 @@
 import { FolderKanban, CheckSquare, CircleCheck, Clock, Plus } from "lucide-react"
 import { Link } from "react-router-dom"
-
+import { useEffect, useState } from "react"
 import CarteStat from "../components/CarteStat"
 import GraphStat from "../components/GraphStat"
 import AvancerProjet from "../components/AvancerProjet"
 import TacheRecente from "../components/TacheRecente"
+import { recupererProjet } from "../api/projets"
+import { recupererTaches } from "../api/taches"
+
 function Dashboard (){
         const tachesRecentes = [
     {
@@ -49,6 +52,7 @@ function Dashboard (){
     },
     ];
 
+    
 
     return(
         <>
@@ -56,7 +60,7 @@ function Dashboard (){
             <div className="flex flex-wrap items-center justify-between gap-6 rounded-2xl bg-gradient-to-br from-indigo-600 via-indigo-600 to-violet-600 p-7 shadow-lg shadow-indigo-500/20">
                 <div>
                     <h2 className="text-2xl font-semibold tracking-tight text-white">Bonjour Theo</h2>
-                    <p className="mt-1 text-sm text-indigo-100">Tu as 4 Projets et 14 taches</p>
+                    <p className="mt-1 text-sm text-indigo-100">Tu as {projets.length} projets et {taches.length} taches</p>
                 </div>
                 <button className="inline-flex h-fit items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-indigo-700 shadow-sm transition duration-200 hover:bg-indigo-50 active:scale-95">
                     <Plus size={16}/>

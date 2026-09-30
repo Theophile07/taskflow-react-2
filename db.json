@@ -1,0 +1,206 @@
+{
+  "utilisateurs": [
+    {
+      "id": 1,
+      "nom": "Shammah Ndjibu",
+      "email": "shammah@primetek.cd",
+      "motDePasse": "1234"
+    },
+    {
+      "id": 2,
+      "nom": "Grâce Ilunga",
+      "email": "grace@taskflow.cd",
+      "motDePasse": "1234"
+    },
+    {
+      "id": 3,
+      "nom": "Jonathan Kabeya",
+      "email": "jonathan@taskflow.cd",
+      "motDePasse": "1234"
+    }
+  ],
+  "projets": [
+    {
+      "id": 1,
+      "utilisateurId": 1,
+      "nom": "Site vitrine Nguvu",
+      "description": "Refonte complète du site institutionnel de l'agence.",
+      "couleur": "#21C7A5",
+      "creeLe": "2026-09-01"
+    },
+    {
+      "id": 2,
+      "utilisateurId": 1,
+      "nom": "TaskFlow",
+      "description": "Application SaaS de gestion de projets et de tâches.",
+      "couleur": "#2563EB",
+      "creeLe": "2026-09-03"
+    },
+    {
+      "id": 3,
+      "utilisateurId": 2,
+      "nom": "Portfolio personnel",
+      "description": "Création d'un portfolio professionnel moderne.",
+      "couleur": "#8B5CF6",
+      "creeLe": "2026-09-05"
+    },
+    {
+      "id": 4,
+      "utilisateurId": 2,
+      "nom": "Campagne digitale",
+      "description": "Préparation d'une campagne de communication digitale.",
+      "couleur": "#F59E0B",
+      "creeLe": "2026-09-07"
+    },
+    {
+      "id": 5,
+      "utilisateurId": 3,
+      "nom": "Application mobile",
+      "description": "Conception de l'interface et du prototype d'une application mobile.",
+      "couleur": "#EC4899",
+      "creeLe": "2026-09-06"
+    },
+    {
+      "id": 6,
+      "utilisateurId": 3,
+      "nom": "Site e-commerce",
+      "description": "Développement d'une boutique en ligne.",
+      "couleur": "#14B8A6",
+      "creeLe": "2026-09-08"
+    }
+  ],
+  "taches": [
+    {
+      "id": 1,
+      "projetId": 1,
+      "titre": "Intégrer le formulaire de contact",
+      "description": "Validation des champs obligatoires et envoi.",
+      "statut": "en_cours",
+      "priorite": "haute",
+      "echeance": "2026-09-12",
+      "creeLe": "2026-09-02",
+      "modifieLe": "2026-09-04"
+    },
+    {
+      "id": 2,
+      "projetId": 1,
+      "titre": "Créer la page À propos",
+      "description": "Créer et intégrer la page présentant l'agence.",
+      "statut": "terminee",
+      "priorite": "moyenne",
+      "echeance": "2026-09-10",
+      "creeLe": "2026-09-03",
+      "modifieLe": "2026-09-08"
+    },
+    {
+      "id": 3,
+      "projetId": 2,
+      "titre": "Créer le dashboard",
+      "description": "Développer l'interface principale de TaskFlow.",
+      "statut": "en_cours",
+      "priorite": "haute",
+      "echeance": "2026-09-15",
+      "creeLe": "2026-09-04",
+      "modifieLe": "2026-09-07"
+    },
+    {
+      "id": 4,
+      "projetId": 2,
+      "titre": "Créer la page des tâches",
+      "description": "Afficher et filtrer toutes les tâches.",
+      "statut": "a_faire",
+      "priorite": "moyenne",
+      "echeance": "2026-09-18",
+      "creeLe": "2026-09-05",
+      "modifieLe": "2026-09-05"
+    },
+    {
+      "id": 5,
+      "projetId": 3,
+      "titre": "Créer la maquette du portfolio",
+      "description": "Concevoir la structure des différentes sections.",
+      "statut": "terminee",
+      "priorite": "haute",
+      "echeance": "2026-09-11",
+      "creeLe": "2026-09-06",
+      "modifieLe": "2026-09-09"
+    },
+    {
+      "id": 6,
+      "projetId": 3,
+      "titre": "Intégrer la page d'accueil",
+      "description": "Transformer la maquette en interface React.",
+      "statut": "en_cours",
+      "priorite": "haute",
+      "echeance": "2026-09-20",
+      "creeLe": "2026-09-08",
+      "modifieLe": "2026-09-09"
+    },
+    {
+      "id": 7,
+      "projetId": 4,
+      "titre": "Créer les visuels de campagne",
+      "description": "Préparer les visuels pour les réseaux sociaux.",
+      "statut": "a_faire",
+      "priorite": "moyenne",
+      "echeance": "2026-09-17",
+      "creeLe": "2026-09-08",
+      "modifieLe": "2026-09-08"
+    },
+    {
+      "id": 8,
+      "projetId": 4,
+      "titre": "Planifier les publications",
+      "description": "Définir le calendrier de publication.",
+      "statut": "en_cours",
+      "priorite": "basse",
+      "echeance": "2026-09-19",
+      "creeLe": "2026-09-09",
+      "modifieLe": "2026-09-09"
+    },
+    {
+      "id": 9,
+      "projetId": 5,
+      "titre": "Créer les wireframes",
+      "description": "Concevoir les premières structures des écrans.",
+      "statut": "terminee",
+      "priorite": "haute",
+      "echeance": "2026-09-14",
+      "creeLe": "2026-09-07",
+      "modifieLe": "2026-09-10"
+    },
+    {
+      "id": 10,
+      "projetId": 5,
+      "titre": "Créer le prototype interactif",
+      "description": "Relier les écrans et simuler les interactions.",
+      "statut": "en_cours",
+      "priorite": "haute",
+      "echeance": "2026-09-22",
+      "creeLe": "2026-09-09",
+      "modifieLe": "2026-09-09"
+    },
+    {
+      "id": 11,
+      "projetId": 6,
+      "titre": "Créer les fiches produits",
+      "description": "Mettre en place les informations des produits.",
+      "statut": "a_faire",
+      "priorite": "moyenne",
+      "echeance": "2026-09-21",
+      "creeLe": "2026-09-10",
+      "modifieLe": "2026-09-10"
+    },
+    {
+      "id": 12,
+      "projetId": 6,
+      "titre": "Créer le panier",
+      "description": "Développer le système d'ajout et de gestion du panier.",
+      "statut": "en_cours",
+      "priorite": "haute",
+      "echeance": "2026-09-25",
+      "creeLe": "2026-09-11",
+      "modifieLe": "2026-09-11"
+    }
+  ]
+}
