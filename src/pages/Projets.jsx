@@ -1,13 +1,53 @@
 import { Plus, Search, SlidersHorizontal, ChevronDown, Check } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
+import { useContext } from "react"
+import { AuthContext } from "../context/AuthContext"
 import CartesProjets from "../components/CartesProjets";
+import { recupererProjet, supprimerProjet } from "../api/projets";
+import { recupererTaches } from "../api/taches";
+import Modal from "../components/Modal"
+import FormulaireProjets from "../components/FormulaireProjets"
+
+
 function Projets(){
+    // TRI
         const optionsTri = [
     { value: "recentes", label: "Plus récentes" },
     { value: "anciennes", label: "Plus anciennes" },
     { value: "haute", label: "Priorité haute" },
     ];
+    const [projets, setProjets] = useState([])
+    const [taches, setTaches] = useState([])
+    const [modal, setModal] = useState(null)
+    const [projetSelectionne, setProjetSelectionne] = useState(null)
+    
+    // Fonction de Modification
+    function ouvrirModification(projet) {
+        setProjetSelectionne(projet)
+        setModal("modifier-projet")
+    }
+    // Fonction de suppression
+    async function supprimerProjetSelectionne() {
+        try {
+            await supprimerProjet(projetSelectionne.id);
 
+            setProjets((anciensProjets) =>
+                anciensProjets.filter(
+                    (projet) =>
+                        String(projet.id) !==
+                        String(projetSelectionne.id)
+                )
+            );
+
+            setModal(null);
+            setProjetSelectionne(null);
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    // ------------ TRI -------------------
     const [tri, setTri] = useState("recentes")
     const [triOuvert, setTriOuvert] = useState(false)
     const triRef = useRef(null)
@@ -22,50 +62,36 @@ function Projets(){
         return () => document.removeEventListener("mousedown", fermer)
     }, [])
 
-        const projets = [
-    {
-        id: 1,
-        nom: "Site vitrine Nguvu",
-        description: "Refonte du site institutionnel de l'agence.",
-        progression: 75,
-    },
-    {
-        id: 2,
-        nom: "TaskFlow",
-        description: "Application React de gestion de projets.",
-        progression: 50,
-    },
-    {
-        id: 3,
-        nom: "AV Connect",
-        description: "Plateforme de services de production audiovisuelle.",
-        progression: 30,
-    },
-    {
-        id: 3,
-        nom: "AV Connect",
-        description: "Plateforme de services de production audiovisuelle.",
-        progression: 30,
-    },
-    {
-        id: 3,
-        nom: "AV Connect",
-        description: "Plateforme de services de production audiovisuelle.",
-        progression: 30,
-    },
-    {
-        id: 3,
-        nom: "AV Connect",
-        description: "Plateforme de services de production audiovisuelle.",
-        progression: 30,
-    },
-    {
-        id: 3,
-        nom: "AV Connect",
-        description: "Plateforme de services de production audiovisuelle.",
-        progression: 30,
-    },
-    ];
+
+    //-------------------  --------------------
+    const { utilisateur } = useContext(AuthContext)
+
+    // -------------- FILTRER PROJET PAR UTILISATEUR 
+    const mesProjets = utilisateur ? projets.filter(
+        (projet) => Number(projet.utilisateurId) === Number(utilisateur.id)
+    ):[]
+
+    const iDProjet = mesProjets.map(
+        (projet) => Number(projet.id)
+    )
+    const mesTaches = taches.filter(
+        (tache) => iDProjet.includes(Number(tache.projetId))
+    )
+    //------------------- API -----------------------------------
+
+    useEffect(() => {
+        async function recupererDonnees() {
+            try{
+                const [donneeProjet, donneeTache] = await Promise.all([recupererProjet(), recupererTaches()])
+                setProjets(donneeProjet)
+                setTaches(donneeTache)
+            }catch(error){
+                console.error(error)
+            }
+        }
+        recupererDonnees()
+    }, [])
+    // -----------------------------------------------------------------
 
     return(
         <>
@@ -73,12 +99,20 @@ function Projets(){
             <div className="flex flex-wrap items-center justify-between gap-6 rounded-2xl bg-gradient-to-br from-indigo-600 via-indigo-600 to-violet-600 p-7 shadow-lg shadow-indigo-500/20">
                     <div>
                         <h2 className="text-2xl font-semibold tracking-tight text-white">Mes projets</h2>
-                        <p className="mt-1 text-sm text-indigo-100"> 4 Projets et 14 taches au total</p>
+                        <p className="mt-1 text-sm text-indigo-100"> {mesProjets.length} Projets et {mesTaches.length} taches au total</p>
                     </div>
-                    <button className="inline-flex h-fit items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-indigo-700 shadow-sm transition duration-200 hover:bg-indigo-50 active:scale-95">
+                    <button className="inline-flex h-fit items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-indigo-700 shadow-sm transition duration-200 hover:bg-indigo-50 active:scale-95"
+                    onClick={() => setModal("nouveau-projet")}
+                    >
                         <Plus size={16}/>
                         Nouveau projet
                     </button>
+                    <Modal
+                    ouvert={modal === "nouveau-projet"}
+                    titre="Nouveau projet"
+                    onFermer={() => setModal(null)}>
+                        <FormulaireProjets/>
+                    </Modal>
                 </div>
                 <div className="flex flex-col gap-3 rounded-2xl bg-white p-3 shadow-sm ring-1 ring-slate-900/5 md:flex-row md:items-center">
                     <div className="relative w-full md:flex-1">
@@ -120,14 +154,92 @@ function Projets(){
                 </div>
                 
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-                    {projets.map((projet) => (
-                        <CartesProjets key={projet.id}
-                        nom={projet.nom}
-                        description={projet.description}
-                        progression={projet.progression}
-                        />
-                    ))}
+                    {mesProjets.map((projet) => {
+                        // Calcul de la progression
+                        const tachesParProjet = mesTaches.filter(
+                            (tache) => Number(tache.projetId) === Number(projet.id)
+                        );
+                        const totalParProjet = tachesParProjet.length;
+                        const terminee = tachesParProjet.filter(
+                            (tache) => tache.statut === "terminee"
+                        ).length;
+
+                        const progression = totalParProjet === 0
+                            ? 0
+                            : Math.round(
+                                (terminee / totalParProjet) * 100
+                            );
+                    
+                    // Rendu
+                        return(
+                            <CartesProjets 
+                            key={projet.id}
+                            id={projet.id}
+                            nom={projet.nom}
+                            description={projet.description}
+                            progression={progression}
+                            couleur={projet.couleur}
+                            onModifier={() => ouvrirModification(projet)}
+                            onSupprimer={() => {
+                                setProjetSelectionne(projet)
+                                setModal("supprimer-projet")
+                            }}
+                            />
+                        )
+                    })}
                 </div>
+               {/* Modal modification */}
+                    <Modal
+                    ouvert={modal === "modifier-projet"}
+                    titre="Modifier le projet"
+                    onFermer={() => {
+                        setModal(null) 
+                        setProjetSelectionne(null)}}
+                    >
+                        <FormulaireProjets projet={projetSelectionne}/>
+
+                    </Modal>
+                    <Modal
+                        ouvert={modal === "supprimer-projet"}
+                        titre="Supprimer le projet"
+                        onFermer={() => {
+                            setModal(null);
+                            setProjetSelectionne(null);
+                        }}
+                    >
+                        <div className="space-y-5">
+                                <p className="text-sm leading-relaxed text-slate-600">
+                                    Voulez-vous vraiment supprimer le projet{" "}
+                                    <strong className="text-slate-900">
+                                        {projetSelectionne?.nom}
+                                    </strong>
+                                    ?
+                                    <br />
+                                    Cette action est irréversible.
+                                </p>
+
+                                <div className="flex justify-end gap-3">
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            setModal(null);
+                                            setProjetSelectionne(null);
+                                        }}
+                                        className="rounded-xl px-4 py-2.5 text-sm font-medium text-slate-600 ring-1 ring-inset ring-slate-200 hover:bg-slate-50"
+                                    >
+                                        Annuler
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        onClick={supprimerProjetSelectionne}
+                                        className="rounded-xl bg-rose-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-rose-500"
+                                    >
+                                        Supprimer
+                                    </button>
+                                </div>
+                            </div>
+                    </Modal>
         </div>
         </>
     )

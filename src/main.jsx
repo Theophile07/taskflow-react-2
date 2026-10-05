@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 
 import App from "./App.jsx";
 import Dashboard from "./pages/Dashboard";
@@ -10,6 +10,7 @@ import DetailsProjets from "./pages/DetailsProjets";
 import Taches from "./pages/Taches";
 import Connexion from "./pages/Connexion";
 import Inscription from "./pages/Inscription";
+import { AuthProvider } from "./context/AuthContext.jsx";
 // import RouteProteger from "./components/RouteProteger";
 
 const router = createBrowserRouter([
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
+      {
+        path: "",
+        element: <Navigate to="/dashboard" replace/>
+      },
       {
         path: "dashboard",
         element: <Dashboard />,
@@ -47,6 +52,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>
 );

@@ -1,5 +1,8 @@
-import { Link } from "react-router-dom"
-import { Mail, Lock, CheckCircle, Layers, TrendingUp } from "lucide-react"
+import { Link, useNavigate } from "react-router-dom"
+import { Mail, Lock, CheckCircle, Layers, TrendingUp, AlertCircle } from "lucide-react"
+import { useContext, useState } from "react"
+import { AuthContext } from "../context/AuthContext"
+import { recupererUtilisateurParEmail } from "../api/utilisateur"
 
 function Connexion(){
     const avantages = [
@@ -7,6 +10,41 @@ function Connexion(){
     { icone: CheckCircle, texte: "Organisez vos tâches par priorité et statut" },
     { icone: TrendingUp, texte: "Visualisez vos performances en un coup d'œil" },
     ]
+    const [erreur, setErreur] = useState("")
+    const [formulaire, setFormulaire] = useState({
+        email: "",
+        motDePasse: ""
+    })
+
+    const { login } = useContext(AuthContext) 
+    const navigate = useNavigate()
+
+    async function gererConnexion(e) {
+        e.preventDefault()
+        setErreur("")
+        try{
+            const utilisateur = await recupererUtilisateurParEmail(formulaire.email.trim())
+            
+            if(!utilisateur){
+                setErreur("Email ou mot de passe incorrect.")
+                return
+            }
+            if(utilisateur.motDePasse !== formulaire.motDePasse){
+                setErreur("Email ou mot de passe incorrect.")
+                return
+            }
+            login(utilisateur)
+
+            navigate("/dashboard")
+        }catch(error){
+            console.error(error)
+            setErreur("Une erreur est survenue.")
+        }
+    }
+    function gererChangement(e){
+        const { name, value } = e.target
+        setFormulaire((ancienFormulaire) => ({ ...ancienFormulaire, [name]: value}))
+    }
 
     return(
         <>
@@ -51,12 +89,15 @@ function Connexion(){
                             <p className="mt-1 text-sm text-slate-500">Connectez-vous à votre espace de travail</p>
                         </div>
 
-                        <form className="space-y-5">
+                        <form className="space-y-5" onSubmit={gererConnexion}>
                             <div>
                                 <label className="mb-1.5 block text-sm font-medium text-slate-700">Adresse email</label>
                                 <div className="relative">
                                     <Mail size={16} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"/>
                                     <input type="email" placeholder="vous@exemple.com"
+                                    name="email"
+                                    value={formulaire.email}
+                                    onChange={gererChangement}
                                     className="w-full rounded-xl border border-transparent bg-slate-50 py-2.5 pl-10 pr-4 text-sm text-slate-700 ring-1 ring-inset ring-slate-200 transition placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500"/>
                                 </div>
                             </div>
@@ -66,11 +107,20 @@ function Connexion(){
                                 <div className="relative">
                                     <Lock size={16} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"/>
                                     <input type="password" placeholder="••••••••"
+                                    name="motDePasse"
+                                    value={formulaire.motDePasse}
+                                    onChange={gererChangement}
                                     className="w-full rounded-xl border border-transparent bg-slate-50 py-2.5 pl-10 pr-4 text-sm text-slate-700 ring-1 ring-inset ring-slate-200 transition placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500"/>
                                 </div>
                             </div>
+                            {erreur && (
+                                <div className="flex items-start gap-2.5 rounded-xl bg-rose-50 px-3.5 py-3 text-sm text-rose-600 ring-1 ring-inset ring-rose-100">
+                                    <AlertCircle size={16} className="mt-0.5 shrink-0"/>
+                                    <span>{erreur}</span>
+                                </div>
+                            )}
 
-                            <button type="button" className="w-full rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25 transition duration-200 hover:from-indigo-500 hover:to-violet-500 active:scale-[0.98]">
+                            <button type="submit" className="w-full rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25 transition duration-200 hover:from-indigo-500 hover:to-violet-500 active:scale-[0.98]">
                                 Se connecter
                             </button>
                         </form>

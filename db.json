@@ -1,19 +1,19 @@
 {
   "utilisateurs": [
     {
-      "id": 1,
+      "id": "1",
       "nom": "Shammah Ndjibu",
       "email": "shammah@primetek.cd",
       "motDePasse": "1234"
     },
     {
-      "id": 2,
+      "id": "2",
       "nom": "Grâce Ilunga",
       "email": "grace@taskflow.cd",
       "motDePasse": "1234"
     },
     {
-      "id": 3,
+      "id": "3",
       "nom": "Jonathan Kabeya",
       "email": "jonathan@taskflow.cd",
       "motDePasse": "1234"
@@ -21,7 +21,7 @@
   ],
   "projets": [
     {
-      "id": 1,
+      "id": "1",
       "utilisateurId": 1,
       "nom": "Site vitrine Nguvu",
       "description": "Refonte complète du site institutionnel de l'agence.",
@@ -29,7 +29,7 @@
       "creeLe": "2026-09-01"
     },
     {
-      "id": 2,
+      "id": "2",
       "utilisateurId": 1,
       "nom": "TaskFlow",
       "description": "Application SaaS de gestion de projets et de tâches.",
@@ -37,15 +37,15 @@
       "creeLe": "2026-09-03"
     },
     {
-      "id": 3,
+      "id": "3",
       "utilisateurId": 2,
-      "nom": "Portfolio personnel",
+      "nom": "Portfolio personnel 2",
       "description": "Création d'un portfolio professionnel moderne.",
       "couleur": "#8B5CF6",
       "creeLe": "2026-09-05"
     },
     {
-      "id": 4,
+      "id": "4",
       "utilisateurId": 2,
       "nom": "Campagne digitale",
       "description": "Préparation d'une campagne de communication digitale.",
@@ -53,7 +53,7 @@
       "creeLe": "2026-09-07"
     },
     {
-      "id": 5,
+      "id": "5",
       "utilisateurId": 3,
       "nom": "Application mobile",
       "description": "Conception de l'interface et du prototype d'une application mobile.",
@@ -61,17 +61,73 @@
       "creeLe": "2026-09-06"
     },
     {
-      "id": 6,
+      "id": "6",
       "utilisateurId": 3,
       "nom": "Site e-commerce",
       "description": "Développement d'une boutique en ligne.",
       "couleur": "#14B8A6",
       "creeLe": "2026-09-08"
+    },
+    {
+      "id": "7",
+      "utilisateurId": 1,
+      "nom": "Plateforme de formation",
+      "description": "Création d'une plateforme destinée à la formation en ligne.",
+      "couleur": "#6366F1",
+      "creeLe": "2026-09-10"
+    },
+    {
+      "id": "8",
+      "utilisateurId": 2,
+      "nom": "Identité visuelle Kivu",
+      "description": "Création d'une identité visuelle complète pour une marque locale.",
+      "couleur": "#F97316",
+      "creeLe": "2026-09-12"
+    },
+    {
+      "id": "9",
+      "utilisateurId": 3,
+      "nom": "Application de réservation",
+      "description": "Développement d'une application de réservation de services.",
+      "couleur": "#06B6D4",
+      "creeLe": "2026-09-14"
+    },
+    {
+      "id": "10",
+      "utilisateurId": 1,
+      "nom": "Dashboard analytique",
+      "description": "Création d'un tableau de bord pour visualiser les performances.",
+      "couleur": "#84CC16",
+      "creeLe": "2026-09-16"
+    },
+    {
+      "id": "11",
+      "utilisateurId": 2,
+      "nom": "Stratégie réseaux sociaux",
+      "description": "Mise en place d'une stratégie de contenu pour les réseaux sociaux.",
+      "couleur": "#E11D48",
+      "creeLe": "2026-09-18"
+    },
+    {
+      "nom": "Creer une landing page",
+      "description": "Pour le site de la maman d'en face",
+      "couleur": "#0ae60d",
+      "utilisateurId": "2",
+      "creerLe": "2026-10-05T15:15:48.656Z",
+      "id": "6lyvM8m2rOE"
+    },
+    {
+      "utilisateurId": "2",
+      "nom": "Presenter le TP",
+      "description": "Lundi 05 octobre",
+      "couleur": "#2563EB",
+      "creeLe": "2026-10-05T17:41:28.204Z",
+      "id": "AHqPU3Gkf1w"
     }
   ],
   "taches": [
     {
-      "id": 1,
+      "id": "1",
       "projetId": 1,
       "titre": "Intégrer le formulaire de contact",
       "description": "Validation des champs obligatoires et envoi.",
@@ -82,7 +138,7 @@
       "modifieLe": "2026-09-04"
     },
     {
-      "id": 2,
+      "id": "2",
       "projetId": 1,
       "titre": "Créer la page À propos",
       "description": "Créer et intégrer la page présentant l'agence.",
@@ -93,7 +149,7 @@
       "modifieLe": "2026-09-08"
     },
     {
-      "id": 3,
+      "id": "3",
       "projetId": 2,
       "titre": "Créer le dashboard",
       "description": "Développer l'interface principale de TaskFlow.",
@@ -104,7 +160,7 @@
       "modifieLe": "2026-09-07"
     },
     {
-      "id": 4,
+      "id": "4",
       "projetId": 2,
       "titre": "Créer la page des tâches",
       "description": "Afficher et filtrer toutes les tâches.",
@@ -115,7 +171,7 @@
       "modifieLe": "2026-09-05"
     },
     {
-      "id": 5,
+      "id": "5",
       "projetId": 3,
       "titre": "Créer la maquette du portfolio",
       "description": "Concevoir la structure des différentes sections.",
@@ -126,7 +182,7 @@
       "modifieLe": "2026-09-09"
     },
     {
-      "id": 6,
+      "id": "6",
       "projetId": 3,
       "titre": "Intégrer la page d'accueil",
       "description": "Transformer la maquette en interface React.",
@@ -137,7 +193,7 @@
       "modifieLe": "2026-09-09"
     },
     {
-      "id": 7,
+      "id": "7",
       "projetId": 4,
       "titre": "Créer les visuels de campagne",
       "description": "Préparer les visuels pour les réseaux sociaux.",
@@ -148,7 +204,7 @@
       "modifieLe": "2026-09-08"
     },
     {
-      "id": 8,
+      "id": "8",
       "projetId": 4,
       "titre": "Planifier les publications",
       "description": "Définir le calendrier de publication.",
@@ -159,7 +215,7 @@
       "modifieLe": "2026-09-09"
     },
     {
-      "id": 9,
+      "id": "9",
       "projetId": 5,
       "titre": "Créer les wireframes",
       "description": "Concevoir les premières structures des écrans.",
@@ -170,7 +226,7 @@
       "modifieLe": "2026-09-10"
     },
     {
-      "id": 10,
+      "id": "10",
       "projetId": 5,
       "titre": "Créer le prototype interactif",
       "description": "Relier les écrans et simuler les interactions.",
@@ -181,7 +237,7 @@
       "modifieLe": "2026-09-09"
     },
     {
-      "id": 11,
+      "id": "11",
       "projetId": 6,
       "titre": "Créer les fiches produits",
       "description": "Mettre en place les informations des produits.",
@@ -192,7 +248,7 @@
       "modifieLe": "2026-09-10"
     },
     {
-      "id": 12,
+      "id": "12",
       "projetId": 6,
       "titre": "Créer le panier",
       "description": "Développer le système d'ajout et de gestion du panier.",
@@ -201,6 +257,117 @@
       "echeance": "2026-09-25",
       "creeLe": "2026-09-11",
       "modifieLe": "2026-09-11"
+    },
+    {
+      "id": "13",
+      "projetId": 7,
+      "titre": "Créer la page de connexion",
+      "description": "Concevoir l'écran de connexion de la plateforme.",
+      "statut": "terminee",
+      "priorite": "haute",
+      "echeance": "2026-09-20",
+      "creeLe": "2026-09-12",
+      "modifieLe": "2026-09-15"
+    },
+    {
+      "id": "14",
+      "projetId": 7,
+      "titre": "Créer le catalogue des formations",
+      "description": "Afficher les formations disponibles avec leurs informations.",
+      "statut": "en_cours",
+      "priorite": "haute",
+      "echeance": "2026-09-25",
+      "creeLe": "2026-09-13",
+      "modifieLe": "2026-09-16"
+    },
+    {
+      "id": "15",
+      "projetId": 8,
+      "titre": "Créer le logo",
+      "description": "Proposer plusieurs pistes graphiques pour le logo.",
+      "statut": "terminee",
+      "priorite": "haute",
+      "echeance": "2026-09-22",
+      "creeLe": "2026-09-13",
+      "modifieLe": "2026-09-18"
+    },
+    {
+      "id": "16",
+      "projetId": 8,
+      "titre": "Définir la palette de couleurs",
+      "description": "Définir les couleurs principales et secondaires de la marque.",
+      "statut": "en_cours",
+      "priorite": "moyenne",
+      "echeance": "2026-09-24",
+      "creeLe": "2026-09-14",
+      "modifieLe": "2026-09-18"
+    },
+    {
+      "id": "17",
+      "projetId": 9,
+      "titre": "Créer l'écran de réservation",
+      "description": "Concevoir l'interface permettant de réserver un service.",
+      "statut": "en_cours",
+      "priorite": "haute",
+      "echeance": "2026-09-28",
+      "creeLe": "2026-09-15",
+      "modifieLe": "2026-09-20"
+    },
+    {
+      "id": "18",
+      "projetId": 9,
+      "titre": "Créer le système de notifications",
+      "description": "Informer l'utilisateur lorsqu'une réservation est confirmée.",
+      "statut": "a_faire",
+      "priorite": "basse",
+      "echeance": "2026-10-02",
+      "creeLe": "2026-09-17",
+      "modifieLe": "2026-09-17"
+    },
+    {
+      "id": "19",
+      "projetId": 10,
+      "titre": "Créer les cartes statistiques",
+      "description": "Afficher les principaux indicateurs de performance.",
+      "statut": "terminee",
+      "priorite": "moyenne",
+      "echeance": "2026-09-26",
+      "creeLe": "2026-09-18",
+      "modifieLe": "2026-09-21"
+    },
+    {
+      "id": "20",
+      "projetId": 10,
+      "titre": "Ajouter les graphiques",
+      "description": "Afficher l'évolution des données sous forme de graphiques.",
+      "statut": "en_cours",
+      "priorite": "haute",
+      "echeance": "2026-09-30",
+      "creeLe": "2026-09-19",
+      "modifieLe": "2026-09-22"
+    },
+    {
+      "id": "21",
+      "projetId": 11,
+      "titre": "Créer le calendrier éditorial",
+      "description": "Organiser les contenus à publier durant le mois.",
+      "statut": "a_faire",
+      "priorite": "moyenne",
+      "echeance": "2026-10-01",
+      "creeLe": "2026-09-20",
+      "modifieLe": "2026-09-20"
+    },
+    {
+      "id": "22",
+      "projetId": 11,
+      "titre": "Préparer les contenus",
+      "description": "Rédiger et préparer les premiers contenus pour les réseaux sociaux.",
+      "statut": "en_cours",
+      "priorite": "haute",
+      "echeance": "2026-10-05",
+      "creeLe": "2026-09-21",
+      "modifieLe": "2026-09-23"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

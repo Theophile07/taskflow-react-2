@@ -1,5 +1,8 @@
 import { LayoutDashboard, FolderKanban, CheckSquare, User, LogOut,  } from "lucide-react"
 import { NavLink } from "react-router-dom"
+import { useContext } from "react"
+import { useNavigate } from "react-router-dom"
+import { AuthContext } from "../context/AuthContext"
 
 function BarreLaterale(){
     const navItem = [{
@@ -22,6 +25,13 @@ function BarreLaterale(){
     }
     ]
 
+    const { utilisateur, logout } = useContext(AuthContext)
+    const navigate = useNavigate()
+
+    function gererDeconnection (){
+        logout()
+        navigate("/connexion")
+    }
     return(
         <>
             <div className="w-72 h-screen shrink-0 flex flex-col bg-slate-900 text-slate-300">
@@ -62,8 +72,10 @@ function BarreLaterale(){
                         <User size={16}/>
                     </div>
                     <div className="min-w-0 flex-1">
-                        <p className="truncate text-sm font-medium text-white">Shammah Ndjibu</p>
-                        <button className="mt-0.5 inline-flex items-center gap-1.5 text-xs font-medium text-slate-400 transition-colors hover:text-rose-400">
+                        <p className="truncate text-sm font-medium text-white">{utilisateur?.nom}</p>
+                        <button 
+                        onClick={gererDeconnection}
+                        className="mt-0.5 inline-flex items-center gap-1.5 text-xs font-medium text-slate-400 transition-colors hover:text-rose-400">
                             <LogOut size={13}/>
                             Deconnexion
                         </button>

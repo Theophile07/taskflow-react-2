@@ -1,6 +1,9 @@
 import { Pencil, Trash2, FolderKanban } from "lucide-react"
+import { useNavigate } from "react-router-dom"
 
-function CartesProjets({nom, description, progression}){
+function CartesProjets({id, nom, description, progression, couleur, onModifier, onSupprimer}){
+    const navigate = useNavigate()
+
     return(
         <>
             <article className="group flex flex-col gap-5 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-900/5 transition duration-200 hover:-translate-y-0.5 hover:shadow-md hover:ring-slate-900/10">
@@ -23,20 +26,27 @@ function CartesProjets({nom, description, progression}){
                         <div className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-indigo-400 transition-all duration-500"
                             style={{
                                 width: `${progression}%`,
+                                background:`${couleur}`
                             }}
                         />
                     </div>
                 </div>
 
                 <div className="mt-auto flex items-center gap-2 border-t border-slate-100 pt-4">
-                    <button className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm transition duration-200 hover:bg-indigo-500 active:scale-95">
+                    <button 
+                    onClick={() => navigate(`/projets/${id}`)}
+                    className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm transition duration-200 hover:bg-indigo-500 active:scale-95">
                         Ouvrir
                     </button>
-                    <button className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-white px-3 py-2 text-sm font-medium text-slate-600 ring-1 ring-inset ring-slate-200 transition duration-200 hover:bg-slate-50 hover:text-slate-900">
+                    <button className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-white px-3 py-2 text-sm font-medium text-slate-600 ring-1 ring-inset ring-slate-200 transition duration-200 hover:bg-slate-50 hover:text-slate-900"
+                    onClick={onModifier}
+                    >
                         <Pencil size={15}/>
                         Modifier
                     </button>
-                    <button className="inline-flex items-center justify-center rounded-xl px-2.5 py-2 text-sm font-medium text-slate-400 transition duration-200 hover:bg-rose-50 hover:text-rose-600">
+                    <button className="inline-flex items-center justify-center rounded-xl px-2.5 py-2 text-sm font-medium text-slate-400 transition duration-200 hover:bg-rose-50 hover:text-rose-600"
+                    onClick={() => onSupprimer(id)}
+                    >
                         <Trash2 size={15}/>
                     </button>
                 </div>               
